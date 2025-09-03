@@ -17,7 +17,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # 🔧 Set HOME=/root so Firefox can launch in CI containers.
+      # Also pass your ReqRes demo key for API tests.
       - name: Run Playwright tests
+        env:
+          HOME: /root
+          REQRES_API_KEY: reqres-free-v1
         run: npx playwright test --reporter=line,html
 
       - name: Upload HTML report
