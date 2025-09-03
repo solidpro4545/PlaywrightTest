@@ -61,6 +61,24 @@ npx playwright show-report
 
 ---
 
+## 🐳 Docker
+
+Build the Docker image:
+
+```bash
+docker build -t playwright-tests .
+```
+
+Run tests with the HTML report saved to the host:
+
+```bash
+docker run --rm -v $(pwd)/playwright-report:/app/playwright-report playwright-tests
+```
+
+The report will be available in the `playwright-report` folder.
+
+---
+
 ## 🌐 Tests Included
 
 - **UI Tests (SauceDemo)**  
@@ -79,9 +97,9 @@ npx playwright show-report
 
 This repo includes a workflow in `.github/workflows/playwright.yml`.  
 On every push or pull request to `main`:
-- Installs dependencies  
-- Installs Playwright browsers  
-- Runs all tests (UI + API)  
+- Uses the official Playwright Docker image
+- Installs dependencies
+- Runs all tests (UI + API)
 - Uploads the **HTML test report** as an artifact  
 
 You can view the status under the **Actions** tab on GitHub.
